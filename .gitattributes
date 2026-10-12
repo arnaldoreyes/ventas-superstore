@@ -1,0 +1,10 @@
+# Reglas de normalización de fin de línea.
+# Sin esto, git convierte CRLF a LF en el CSV al versionarlo: el archivo deja de ser
+# idéntico al descargado y su hash SHA-256 ya no coincide con data/README.md.
+*.csv   -text
+*.pbix  -text
+*.xlsx  -text
+
+# Scripts y documentación: UTF-8, fin de línea LF, para que se lean igual en cualquier sistema.
+*.sql   text eol=lf
+*.md    text eol=lf

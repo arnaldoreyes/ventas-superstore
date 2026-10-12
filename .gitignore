@@ -1,0 +1,15 @@
+# Notas personales: nunca se publican
+_apuntes/
+
+# Credenciales locales de base de datos
+*.env
+.env
+
+# Temporales de Office y Power BI
+~$*
+*.pbix~*
+*.tmp
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
