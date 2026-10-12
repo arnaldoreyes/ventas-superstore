@@ -67,14 +67,15 @@ En `docs/preguntas.md`. Estado: ninguna respondida todavía.
 
 ## Estado actual
 
-**Fase 1 cerrada y fusionada** (PR #1). `main` limpio, rama borrada. La base tiene
-`raw.superstore` con 9.994 filas verificadas. En `analytics` no hay ningún objeto todavía.
-Rama en curso: `feat/limpieza-datos`.
+**Fase 2 (limpieza) terminada**, pendiente de fusionar en la rama `feat/limpieza-datos`.
+`sql/03_clean.sql` crea la vista `analytics.superstore` con 26 columnas: las 21 originales
+con `product_name` arreglado, más `order_year`, `order_month`, `order_ym`, `ship_days` y
+`margin`. Las comprobaciones de aceptación pasan. El detalle público está en
+`docs/metodologia.md`.
 
 ## Siguiente paso
 
-Escribir `sql/03_clean.sql` — lo escribe **Arnaldo** — para crear la vista
-`analytics.superstore`. Es el único paso que falta antes de arrancar la Q1.
+Fusionar el PR de la limpieza y arrancar la **Q1, escalón 1: ventas por mes**.
 
 ## Perfil del dato (calculado sobre raw.superstore; script en `_apuntes/perfil_datos.sql`)
 
