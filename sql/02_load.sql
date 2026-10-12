@@ -33,7 +33,7 @@ TRUNCATE raw.superstore;
 -- Si estos números no salen, la carga está mal y no tiene sentido seguir.
 -- =====================================================================
 SELECT count(*)                 AS filas,            -- esperado: 9994
-       sum(sales)               AS ventas_totales,   -- esperado: 2297200.8604
+       sum(sales)               AS ventas_totales,   -- esperado: 2297200.8603
        sum(profit)              AS utilidad_total,   -- esperado: 286397.0217
        count(DISTINCT order_id) AS pedidos,          -- esperado: 5009
        count(DISTINCT customer_id) AS clientes,      -- esperado: 793
