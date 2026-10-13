@@ -12,4 +12,3 @@
 - [ ] No se trabajó directamente sobre `main`
 - [ ] Los scripts SQL corren de cero sin errores
 - [ ] El resultado quedó documentado en `docs/`
-- [ ] `CONTEXT.md` quedó actualizado

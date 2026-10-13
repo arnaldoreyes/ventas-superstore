@@ -31,7 +31,6 @@ Sin Python ni otros lenguajes: todo el tratamiento de datos vive en SQL.
 
 ```
 ventas-superstore/
-├─ CONTEXT.md                 contexto vivo del proyecto
 ├─ data/
 │  ├─ README.md               origen, hash, licencia y controles de integridad
 │  └─ raw/superstore.csv      archivo original, sin editar
@@ -79,4 +78,5 @@ exacta, hash SHA-256, licencia y salvedades en [`data/README.md`](data/README.md
 
 ## Estado
 
-Fase 1 (preparación) en curso. Ver [`CONTEXT.md`](CONTEXT.md) para el detalle y el siguiente paso.
+Fases 1 y 2 cerradas y fusionadas en `main`. El detalle de lo hecho y las decisiones están en
+[`docs/metodologia.md`](docs/metodologia.md).
