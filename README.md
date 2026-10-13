@@ -17,7 +17,8 @@ dejar el análisis reproducible de principio a fin.
 | 5 | ¿Cuántos productos y cuántos clientes explican el 80% de las ventas? | Pendiente |
 | 6 | ¿Qué regiones y estados rinden, y qué explica a los que no rinden? | Pendiente |
 
-Detalle de escalones y conceptos en [`docs/preguntas.md`](docs/preguntas.md).
+Cada pregunta se responde con un script en `sql/questions/`. Las respuestas escritas se agregan
+a este README a medida que cada pregunta se cierra.
 
 ## Stack
 
@@ -25,7 +26,6 @@ Detalle de escalones y conceptos en [`docs/preguntas.md`](docs/preguntas.md).
 - **Power BI Desktop** — tablero, una página por pregunta
 - **Excel** — tabla dinámica y gráfico de apoyo por pregunta
 
-Sin Python ni otros lenguajes: todo el tratamiento de datos vive en SQL.
 
 ## Estructura
 
@@ -42,9 +42,7 @@ ventas-superstore/
 ├─ powerbi/                   tablero y medidas DAX documentadas
 ├─ excel/                     tablas dinámicas por pregunta
 ├─ docs/
-│  ├─ preguntas.md            las 6 preguntas y sus escalones
-│  ├─ metodologia.md          linaje, supuestos y limitaciones
-│  └─ respuestas/             interpretación escrita de cada respuesta
+│  └─ metodologia.md          linaje, supuestos y limitaciones
 └─ _apuntes/                  notas personales, no se publica
 ```
 
