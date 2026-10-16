@@ -46,8 +46,8 @@ WHERE replace(product_name, chr(160), ' ') = 'Konftel 250 Conference phone - Cha
 ```
 
 El producto está en la base, pero no se encuentra escribiendo el nombre como se ve. Un
-filtro escrito a mano, un `BUSCARV` de Excel o una relación de Power BI por nombre fallarían
-en silencio, devolviendo cero filas en lugar de un error.
+filtro escrito a mano o una relación de Power BI por nombre fallarían en silencio,
+devolviendo cero filas en lugar de un error.
 
 ### 3. Espacios en los extremos de `product_name` — 16 filas
 

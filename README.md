@@ -1,31 +1,35 @@
 # Análisis de ventas — Superstore
 
-Seis preguntas de negocio respondidas con SQL sobre el dataset público **Sample - Superstore**
-(9.994 líneas de pedido, Estados Unidos, 2014-2017) y comunicadas en Power BI y Excel.
+Seis preguntas de negocio respondidas con **SQL sobre PostgreSQL** y comunicadas en un tablero
+de **Power BI**, sobre el dataset público **Sample - Superstore** (9.994 líneas de pedido,
+Estados Unidos, 2014-2017).
 
-El objetivo no es graficar: es responder preguntas, justificar cada decisión de limpieza y
-dejar el análisis reproducible de principio a fin.
+El objetivo no es graficar: es responder preguntas de negocio, justificar cada decisión de
+limpieza y dejar el análisis reproducible de principio a fin.
 
 ## Las 6 preguntas
 
 | # | Pregunta | Estado |
 |---|----------|--------|
-| 1 | ¿Cómo evolucionan las ventas y la utilidad en el tiempo, y en qué meses se concentra el negocio? | Pendiente |
+| 1 | ¿Cómo evolucionan las ventas y la utilidad en el tiempo, y en qué meses se concentra el negocio? | SQL listo · tablero pendiente |
 | 2 | ¿Qué categorías y subcategorías venden y cuáles destruyen margen? | Pendiente |
 | 3 | ¿En qué punto el descuento deja de convenir? | Pendiente |
 | 4 | ¿Quiénes son los clientes más valiosos y cómo se reparte el negocio por segmento? | Pendiente |
 | 5 | ¿Cuántos productos y cuántos clientes explican el 80% de las ventas? | Pendiente |
 | 6 | ¿Qué regiones y estados rinden, y qué explica a los que no rinden? | Pendiente |
 
-Cada pregunta se responde con un script en `sql/questions/`. Las respuestas escritas se agregan
-a este README a medida que cada pregunta se cierra.
+## Respuestas
+
+Cada pregunta cerrada deja acá su hallazgo: la cifra que responde, cómo se lee y la captura de
+su página en el tablero. Este README es el único lugar donde vive la respuesta.
+
+Los scripts de `sql/questions/` no la repiten: cada uno lleva, como comentario, **qué responde y
+cómo se lee**. Así el script se entiende solo y no hay dos versiones del mismo hallazgo.
 
 ## Stack
 
-- **PostgreSQL 18** — modelado, limpieza y análisis
-- **Power BI Desktop** — tablero, una página por pregunta
-- **Excel** — tabla dinámica y gráfico de apoyo por pregunta
-
+- **PostgreSQL 18** — modelado, limpieza y análisis. Es donde vive el dato.
+- **Power BI Desktop** — el tablero, con su modelo de datos y las medidas DAX.
 
 ## Estructura
 
@@ -37,13 +41,14 @@ ventas-superstore/
 ├─ sql/
 │  ├─ 01_schema.sql           esquemas y tabla cruda
 │  ├─ 02_load.sql             carga del CSV
-│  ├─ 03_clean.sql            limpieza y validaciones
-│  └─ questions/              un script por pregunta
-├─ powerbi/                   tablero y medidas DAX documentadas
-├─ excel/                     tablas dinámicas por pregunta
-├─ docs/
-│  └─ metodologia.md          linaje, supuestos y limitaciones
-└─ _apuntes/                  notas personales, no se publica
+│  ├─ 03_clean.sql            limpieza, tipado y validaciones
+│  ├─ 04_model.sql            dimensiones, hechos y tabla de fechas
+│  └─ questions/              un script numerado por pregunta
+├─ powerbi/
+│  ├─ ventas_superstore.pbix  modelo y tablero
+│  └─ img/                    captura de cada página
+└─ docs/
+   └─ methodology.md          linaje, decisiones y limitaciones del dato
 ```
 
 ## Cómo reproducirlo
@@ -76,5 +81,11 @@ exacta, hash SHA-256, licencia y salvedades en [`data/README.md`](data/README.md
 
 ## Estado
 
-Fases 1 y 2 cerradas y fusionadas en `main`. El detalle de lo hecho y las decisiones están en
-[`docs/metodologia.md`](docs/metodologia.md).
+**Cerrado.** La base tiene la capa cruda `raw.superstore` y la vista limpia
+`analytics.superstore`, con sus comprobaciones de aceptación pasando. El registro técnico de
+qué se encontró en el dato, qué se decidió y qué quedó sin limpiar está en
+[`docs/methodology.md`](docs/methodology.md).
+
+**En construcción.** `sql/04_model.sql` (dimensiones, hechos y tabla de fechas) y el tablero
+`powerbi/ventas_superstore.pbix`. De las seis preguntas, la Q1 tiene su consulta terminada;
+le faltan la respuesta en este README y su página en el tablero.
