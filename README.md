@@ -11,11 +11,11 @@ limpieza y dejar el análisis reproducible de principio a fin.
 
 | # | Pregunta | Estado |
 |---|----------|--------|
-| 1 | ¿Cómo evolucionan las ventas y la utilidad en el tiempo, y en qué meses se concentra el negocio? | SQL listo · tablero pendiente |
+| 1 | ¿Cómo evolucionan las ventas y la utilidad en el tiempo, y en qué meses se concentra el negocio? | Respuesta escrita · tablero pendiente |
 | 2 | ¿Qué categorías y subcategorías venden y cuáles destruyen margen? | Pendiente |
 | 3 | ¿En qué punto el descuento deja de convenir? | Pendiente |
 | 4 | ¿Quiénes son los clientes más valiosos y cómo se reparte el negocio por segmento? | Pendiente |
-| 5 | ¿Cuántos productos y cuántos clientes explican el 80% de las ventas? | Pendiente |
+| 5 | ¿Cuántos productos y cuántos clientes explican el 80 % de las ventas? | Pendiente |
 | 6 | ¿Qué regiones y estados rinden, y qué explica a los que no rinden? | Pendiente |
 
 ## Respuestas
@@ -25,6 +25,30 @@ su página en el tablero. Este README es el único lugar donde vive la respuesta
 
 Los scripts de `sql/questions/` no la repiten: cada uno lleva, como comentario, **qué responde y
 cómo se lee**. Así el script se entiende solo y no hay dos versiones del mismo hallazgo.
+
+### Q1 · Evolución y concentración de las ventas
+
+**La respuesta en una línea:** el negocio crece y mejora su rentabilidad, pero la temporada alta
+concentra el volumen sin concentrar la ganancia.
+
+**Evolución.** Las ventas pasan de 484.247,50 (2014) a 733.215,26 (2017), y lo hacen en zigzag:
+caen 2,83 % en 2015 y se recuperan con fuerza en 2016 (+29,47 %). La utilidad crece los tres años
+y siempre por encima de las ventas: en 2015, el único año en que las ventas bajaron, la utilidad
+subió 24,37 %. El margen pasó de 10,23 % a 13,43 %, y cerró el período en 12,74 %.
+
+**Concentración.** El negocio se concentra en el último tercio del año. Noviembre (15,34 %) y
+diciembre (14,16 %) reúnen por sí solos el 29,50 % de las ventas del período; sumando septiembre,
+el 42,89 %. Enero (4,13 %) y febrero (2,60 %) son los meses más flojos: juntos aportan el 6,73 %.
+
+**El hallazgo.** Los meses de mayor venta no son los de mejor margen. Noviembre, el mes que más
+vende, está entre los cuatro peores márgenes (10,06 %); febrero, el que menos vende, tiene el
+mejor (17,23 %). La temporada alta concentra el volumen, no la rentabilidad.
+
+Febrero tiene un atenuante de calendario: acumula 113 días en los cuatro años contra 120 a 124 de
+los demás meses, así que una parte de su debilidad es el mes y no el negocio. Está anotado en las
+[limitaciones del dato](docs/methodology.md#limitaciones-conocidas).
+
+Consulta: [`sql/questions/01_sales_over_time.sql`](sql/questions/01_sales_over_time.sql)
 
 ## Stack
 
@@ -87,5 +111,5 @@ qué se encontró en el dato, qué se decidió y qué quedó sin limpiar está e
 [`docs/methodology.md`](docs/methodology.md).
 
 **En construcción.** `sql/04_model.sql` (dimensiones, hechos y tabla de fechas) y el tablero
-`powerbi/ventas_superstore.pbix`. De las seis preguntas, la Q1 tiene su consulta terminada;
-le faltan la respuesta en este README y su página en el tablero.
+`powerbi/ventas_superstore.pbix`. De las seis preguntas, la Q1 tiene su consulta y su respuesta
+escritas; le falta su página en el tablero.
