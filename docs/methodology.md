@@ -51,7 +51,7 @@ devolviendo cero filas en lugar de un error.
 
 ### 3. Espacios en los extremos de `product_name` — 16 filas
 
-Tres productos tienen el nombre terminado en un espacio en el 100% de sus filas. Se recortan
+Tres productos tienen el nombre terminado en un espacio en el 100 % de sus filas. Se recortan
 con `btrim`.
 
 ### 4. `product_id` no identifica un producto — 337 filas
@@ -94,7 +94,7 @@ descuento y misma utilidad (-12,0588).
 
 ## Lo que no se limpió, y por qué
 
-- **Los márgenes negativos.** 1.871 líneas (18,7%) cierran con utilidad negativa. No son un
+- **Los márgenes negativos.** 1.871 líneas (18,7 %) cierran con utilidad negativa. No son un
   error de datos: son el resultado de la política de descuentos y el objeto central del
   análisis. Eliminarlos borraría el hallazgo.
 - **Los acentos y las comillas tipográficas.** Son parte del nombre real del producto.
@@ -120,8 +120,12 @@ Las dos últimas confirman que la limpieza no alteró ni la cantidad de registro
   [`../data/README.md`](../data/README.md).
 - `product_id` no es fiable como identificador de producto.
 - La línea duplicada se conserva: si fuera un error del origen, las ventas totales estarían
-  sobreestimadas en 281,37, un 0,012%.
+  sobreestimadas en 281,37, un 0,012 %.
 - `postal_code` conserva códigos de 4 dígitos sin rellenar, por decisión explícita.
 - El margen de un grupo se calcula siempre como `sum(profit) / sum(sales)`. El promedio de
-  los márgenes fila por fila da un resultado distinto, 12,03% contra 12,47% sobre el total,
+  los márgenes fila por fila da un resultado distinto, 12,03 % contra 12,47 % sobre el total,
   y es un error frecuente.
+- **Los meses no tienen la misma cantidad de días.** Febrero acumula 113 días en los cuatro
+  años (2016 fue bisiesto) contra 120 a 124 de los demás meses. Al comparar meses por su
+  total, febrero parte en desventaja: una parte de su debilidad en la Q1 es calendario y no
+  de negocio.

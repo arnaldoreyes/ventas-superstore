@@ -4,9 +4,32 @@
 --
 -- Fuente: analytics.superstore (vista limpia; se crea en sql/03_clean.sql).
 --
+-- La respuesta está en el README.md del repositorio, sección Q1. Acá no se
+-- repite: este archivo dice qué responde cada consulta y cómo se lee el
+-- resultado.
+--
 -- Dos consultas, una por cada mitad de la pregunta:
 --   1) por año            -> cómo evoluciona
 --   2) por mes calendario -> dónde se concentra
+--
+-- CÓMO SE LEE EL RESULTADO
+--
+--   total_sales / total_profit
+--       Dólares del año o del mes de esa fila: la suma de sus líneas de pedido.
+--
+--   margin_pct
+--       Margen del grupo, en escala de porcentaje (10,23 se lee 10,23 %).
+--       Se calcula como sum(profit) / sum(sales), NUNCA promediando el margen
+--       fila por fila: el promedio le da el mismo peso a una línea de 10 dólares
+--       que a una de 5.000, y da 12,47 % en lugar de 12,03 % sobre el total.
+--
+--   sales_var_pct / profit_var_pct
+--       Variación contra el año anterior, calculada con LAG. En 2014 salen NULL
+--       a propósito: no hay año previo con el que comparar. NULL no es cero.
+--
+--   sales_share_pct
+--       Participación de ese mes en las ventas de los cuatro años. Los doce
+--       valores suman 100.
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
@@ -37,23 +60,3 @@ SELECT
 FROM analytics.superstore
 GROUP BY order_month
 ORDER BY order_month;
-
--- =====================================================================
--- RESPUESTA
---
--- EVOLUCIÓN. Las ventas pasan de 484.247,50 (2014) a 733.215,26 (2017), pero no
--- en línea recta: caen 2,83 % en 2015 y se recuperan con fuerza en 2016 (+29,47 %).
--- La utilidad sube los tres años y siempre por encima de las ventas: en 2015 las
--- ventas cayeron y la utilidad creció 24,37 %. El margen pasó de 10,23 % a 13,43 %
--- y cerró en 12,74 %.
---
--- CONCENTRACIÓN. El negocio se concentra en el último tercio del año. Noviembre
--- (15,34 %) y diciembre (14,16 %) solos reúnen el 29,50 % de las ventas del período;
--- sumando septiembre, el 42,89 %. Enero (4,13 %) y febrero (2,60 %) son los meses
--- más flojos: juntos aportan el 6,73 %.
---
--- CRUCE DE LAS DOS LECTURAS. Los meses de mayor venta no son los de mejor margen.
--- Noviembre, el mes que más vende, está entre los cuatro peores márgenes (10,06 %);
--- febrero, el que menos vende, tiene el mejor (17,23 %). La temporada alta concentra
--- el volumen, no la rentabilidad.
--- =====================================================================
