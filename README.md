@@ -84,17 +84,21 @@ ventas-superstore/
    CREATE DATABASE ventas_superstore;
    ```
 
-3. Crear los esquemas y la tabla, cargar los datos y limpiarlos, siempre desde la raíz
-   del repositorio y con `psql` (los scripts usan `\copy`, que es un meta-comando de `psql`):
+3. Crear los esquemas y la tabla, cargar los datos, limpiarlos y construir el modelo, siempre
+   desde la raíz del repositorio y con `psql` (los scripts usan `\copy`, que es un meta-comando
+   de `psql`):
 
    ```
    psql -U <usuario> -d ventas_superstore -f sql/01_schema.sql
    psql -U <usuario> -d ventas_superstore -f sql/02_load.sql
    psql -U <usuario> -d ventas_superstore -f sql/03_clean.sql
+   psql -U <usuario> -d ventas_superstore -f sql/04_model.sql
    ```
 
    La carga debe terminar reportando **9.994 filas** y **2.297.200,86** de ventas. Si esos
-   números no coinciden, la fuente está alterada y el análisis no vale.
+   números no coinciden, la fuente está alterada y el análisis no vale. El script del modelo
+   imprime sus propias comprobaciones: 9.994 filas en los hechos, 2.297.200,8603 de ventas,
+   286.397,0217 de utilidad y cero filas huérfanas.
 
 4. Abrir `powerbi/ventas_superstore.pbix` y refrescar; apunta a la base local.
 
@@ -105,11 +109,11 @@ exacta, hash SHA-256, licencia y salvedades en [`data/README.md`](data/README.md
 
 ## Estado
 
-**Cerrado.** La base tiene la capa cruda `raw.superstore` y la vista limpia
-`analytics.superstore`, con sus comprobaciones de aceptación pasando. El registro técnico de
-qué se encontró en el dato, qué se decidió y qué quedó sin limpiar está en
+**Cerrado.** La base tiene la capa cruda `raw.superstore`, la vista limpia `analytics.superstore`
+y el modelo en estrella de [`sql/04_model.sql`](sql/04_model.sql) —una tabla de fechas, cinco
+dimensiones y la tabla de hechos—, los tres con sus comprobaciones de aceptación pasando. El
+registro técnico de qué se encontró en el dato, qué se decidió y qué quedó sin limpiar está en
 [`docs/methodology.md`](docs/methodology.md).
 
-**En construcción.** `sql/04_model.sql` (dimensiones, hechos y tabla de fechas) y el tablero
-`powerbi/ventas_superstore.pbix`. De las seis preguntas, la Q1 tiene su consulta y su respuesta
-escritas; le falta su página en el tablero.
+**En construcción.** El modelo en Power BI y el tablero `powerbi/ventas_superstore.pbix`. De las
+seis preguntas, la Q1 tiene su consulta y su respuesta escritas; le falta su página en el tablero.
